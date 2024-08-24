@@ -10,11 +10,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_number')->unique();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
-            $table->decimal('total_amount', 8, 2);
-            $table->integer('receipt_number')->unique();
-            $table->timestamp('created_at')->useCurrent();
             $table->string('payment_method');
+            $table->timestamp('order_time');
+            $table->timestamps();
         });
     }
 

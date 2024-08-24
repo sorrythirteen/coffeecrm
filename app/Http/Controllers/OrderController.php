@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Customer;
 use App\Models\CoffeeMenu;
 use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\OrderItem; // Убедитесь, что этот импорт используется
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,24 +31,19 @@ class OrderController extends Controller
             'items.*.coffee_menu_id' => 'required|exists:coffee_menus,id',
             'items.*.quantity' => 'required|integer|min:1',
             'payment_method' => 'required|in:cash,sbp,card',
+            'order_time' => 'required|date',
         ]);
 
         DB::beginTransaction();
 
         try {
-            $totalAmount = 0;
-            foreach ($validatedData['items'] as $item) {
-                $coffeeMenu = CoffeeMenu::find($item['coffee_menu_id']);
-                $totalAmount += $coffeeMenu->price * $item['quantity'];
-            }
-
-            $receiptNumber = rand(1, 99999999);
+            $orderNumber = rand(1, 99999999);
 
             $order = Order::create([
+                'order_number' => $orderNumber,
                 'customer_id' => $validatedData['customer_id'],
-                'total_amount' => $totalAmount,
-                'receipt_number' => $receiptNumber,
                 'payment_method' => $validatedData['payment_method'],
+                'order_time' => $validatedData['order_time'],
             ]);
 
             foreach ($validatedData['items'] as $item) {
@@ -57,6 +51,7 @@ class OrderController extends Controller
                 $order->items()->create([
                     'coffee_menu_id' => $item['coffee_menu_id'],
                     'quantity' => $item['quantity'],
+                    'price' => $coffeeMenu->price,
                 ]);
             }
 

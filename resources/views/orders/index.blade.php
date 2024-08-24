@@ -7,18 +7,28 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Receipt Number</th>
-                <th>Date</th>
-                <th>Total Amount</th>
+                <th>Order Number</th>
+                <th>Customer Name</th>
+                <th>Items</th>
+                <th>Payment Method</th>
+                <th>Order Time</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($orders as $order)
             <tr>
-                <td>{{ $order->receipt_number }}</td>
-                <td>{{ $order->created_at }}</td>
-                <td>{{ $order->total_amount }}</td>
+                <td>{{ $order->order_number }}</td>
+                <td>{{ $order->customer->name }}</td>
+                <td>
+                    <ul>
+                        @foreach($order->items as $item)
+                        <li>{{ $item->coffeeMenu->name }} ({{ $item->quantity }})</li>
+                        @endforeach
+                    </ul>
+                </td>
+                <td>{{ $order->payment_method }}</td>
+                <td>{{ $order->order_time }}</td>
                 <td>
                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display: inline;">
                         @csrf

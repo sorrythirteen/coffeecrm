@@ -45,6 +45,10 @@
                 <option value="card">Card</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="order_time">Order Time</label>
+            <input type="datetime-local" name="order_time" class="form-control" required>
+        </div>
         <button type="submit" class="btn btn-primary">Create Order</button>
     </form>
 </div>
