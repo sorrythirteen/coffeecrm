@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Dashboard</h1>
+    <h1 class="mb-4">Доска</h1>
     <div class="row">
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Customers</h5>
+                    <h5 class="card-title">Всего гостей</h5>
                     <p class="card-text">{{ $totalCustomers }}</p>
                 </div>
             </div>
@@ -15,7 +15,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Inventories</h5>
+                    <h5 class="card-title">Всего запасов</h5>
                     <p class="card-text">{{ $totalInventories }}</p>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Loyalty Points</h5>
+                    <h5 class="card-title">Всего баллов</h5>
                     <p class="card-text">{{ $totalLoyaltyPoints }}</p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Employees</h5>
+                    <h5 class="card-title">Всего сотрудников</h5>
                     <p class="card-text">{{ $totalEmployees }}</p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Tasks</h5>
+                    <h5 class="card-title">Всего задач</h5>
                     <p class="card-text">{{ $totalTasks }}</p>
                 </div>
             </div>
@@ -49,7 +49,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Pending Tasks</h5>
+                    <h5 class="card-title">Незавершенные задачи</h5>
                     <p class="card-text">{{ $pendingTasks }}</p>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Completed Tasks</h5>
+                    <h5 class="card-title">Завершенные задачи</h5>
                     <p class="card-text">{{ $completedTasks }}</p>
                 </div>
             </div>
@@ -65,7 +65,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Total Work Hours</h5>
+                    <h5 class="card-title">Общее количество рабочих часов</h5>
                     <p class="card-text">{{ $totalWorkHours }}</p>
                 </div>
             </div>

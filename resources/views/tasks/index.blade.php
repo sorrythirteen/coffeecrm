@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Tasks</h1>
-    <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3">Add Task</a>
+    <h1 class="mb-4">Задачи</h1>
+    <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3">Добавить</a>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Due Date</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Сделать до</th>
+                <th>Статус</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +22,11 @@
                 <td>{{ $task->due_date }}</td>
                 <td>{{ $task->status }}</td>
                 <td>
-                    <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-warning">Редактировать</a>
                     <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
                     </form>
                 </td>
             </tr>

@@ -2,17 +2,17 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Order History</h1>
-    <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">Create Order</a>
+    <h1 class="mb-4">История заказов</h1>
+    <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">Добавить заказ</a>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Order Number</th>
-                <th>Customer Name</th>
-                <th>Items</th>
-                <th>Payment Method</th>
-                <th>Order Time</th>
-                <th>Actions</th>
+                <th>Номер чека</th>
+                <th>Имя гостя</th>
+                <th>Позиции</th>
+                <th>Метод оплаты</th>
+                <th>Время оплаты</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
                     </form>
                 </td>
             </tr>

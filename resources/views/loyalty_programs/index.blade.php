@@ -3,14 +3,14 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Loyalty Programs</h1>
-    <a href="{{ route('loyalty_programs.create') }}" class="btn btn-primary mb-3">Add Loyalty Program</a>
+    <h1 class="mb-4">Баллы</h1>
+    <a href="{{ route('loyalty_programs.create') }}" class="btn btn-primary mb-3">Добавить гостя в программу лояльности</a>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Customer</th>
-                <th>Points</th>
-                <th>Actions</th>
+                <th>Гость</th>
+                <th>Баллы</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +19,11 @@
                 <td>{{ $loyaltyProgram->customer ? $loyaltyProgram->customer->name : 'No Customer' }}</td>
                 <td>{{ $loyaltyProgram->points }}</td>
                 <td>
-                    <a href="{{ route('loyalty_programs.edit', $loyaltyProgram->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ route('loyalty_programs.edit', $loyaltyProgram->id) }}" class="btn btn-sm btn-warning">Редактировать</a>
                     <form action="{{ route('loyalty_programs.destroy', $loyaltyProgram->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
                     </form>
                 </td>
             </tr>

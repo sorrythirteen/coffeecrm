@@ -10,7 +10,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">CRM</a>
+        <a class="navbar-brand" href="#">CoffeeCRM</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
                         <a class="nav-link" href="{{ route('coffee_menus.index') }}">Меню</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                        <a class="nav-link" href="{{ route('orders.index') }}">Заказы</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
@@ -56,7 +56,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <span class="nav-link">Пользователь {{ Auth::user()->name }}</span>
+                        <span class="nav-link">Пользователь: {{ Auth::user()->name }}</span>
                     </li>
                 @else
                     <li class="nav-item">

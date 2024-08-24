@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Create Order</h1>
+    <h1 class="mb-4">Создать заказ</h1>
     <form action="{{ route('orders.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="customer_id">Customer</label>
+            <label for="customer_id">Имя</label>
             <select name="customer_id" class="form-control" required>
                 @foreach($customers as $customer)
                 <option value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -14,12 +14,12 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="items">Items</label>
+            <label for="items">Позиции</label>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Coffee Menu</th>
-                        <th>Quantity</th>
+                        <th>Меню</th>
+                        <th>Количество</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,18 +38,18 @@
             </table>
         </div>
         <div class="form-group">
-            <label for="payment_method">Payment Method</label>
+            <label for="payment_method">Метод оплаты</label>
             <select name="payment_method" class="form-control" required>
-                <option value="cash">Cash</option>
-                <option value="sbp">SBP</option>
-                <option value="card">Card</option>
+                <option value="cash">Наличные</option>
+                <option value="sbp">СБП</option>
+                <option value="card">Карта</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="order_time">Order Time</label>
+            <label for="order_time">Время оплаты</label>
             <input type="datetime-local" name="order_time" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Create Order</button>
+        <button type="submit" class="btn btn-primary">Создать заказ</button>
     </form>
 </div>
 @endsection
