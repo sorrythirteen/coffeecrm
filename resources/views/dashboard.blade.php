@@ -2,8 +2,76 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Доска</h1>
+    <h1 class="mb-4">Dashboard</h1>
     <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Customers</h5>
+                    <p class="card-text">{{ $totalCustomers }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Inventories</h5>
+                    <p class="card-text">{{ $totalInventories }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Loyalty Points</h5>
+                    <p class="card-text">{{ $totalLoyaltyPoints }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Employees</h5>
+                    <p class="card-text">{{ $totalEmployees }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Tasks</h5>
+                    <p class="card-text">{{ $totalTasks }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pending Tasks</h5>
+                    <p class="card-text">{{ $pendingTasks }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Completed Tasks</h5>
+                    <p class="card-text">{{ $completedTasks }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Work Hours</h5>
+                    <p class="card-text">{{ $totalWorkHours }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
         <div class="col-md-4">
             <canvas id="customersChart" width="400" height="200"></canvas>
         </div>
