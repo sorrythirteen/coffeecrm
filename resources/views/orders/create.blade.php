@@ -9,7 +9,7 @@
             <label for="customer_id">Имя</label>
             <select name="customer_id" class="form-control" required>
                 @foreach($customers as $customer)
-                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -24,15 +24,43 @@
                 </thead>
                 <tbody>
                     @foreach($coffeeMenus as $coffeeMenu)
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="items[{{ $coffeeMenu->id }}][coffee_menu_id]"
+                                    value="{{ $coffeeMenu->id }}">
+                                {{ $coffeeMenu->name }}
+                            </td>
+                            <td>
+                                <input type="number" name="items[{{ $coffeeMenu->id }}][quantity]" class="form-control"
+                                    min="1" value="1">
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <label for="inventories">Запасы</label>
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>
-                            <input type="checkbox" name="items[{{ $coffeeMenu->id }}][coffee_menu_id]" value="{{ $coffeeMenu->id }}">
-                            {{ $coffeeMenu->name }}
-                        </td>
-                        <td>
-                            <input type="number" name="items[{{ $coffeeMenu->id }}][quantity]" class="form-control" min="1" value="1">
-                        </td>
+                        <th>Наименование</th>
+                        <th>Количество</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach($inventories as $inventory)
+                        <tr>
+                            <td>
+                                <input type="hidden" name="inventories[{{ $inventory->id }}][id]"
+                                    value="{{ $inventory->id }}">
+                                {{ $inventory->product_name }}
+                            </td>
+                            <td>
+                                <input type="number" name="inventories[{{ $inventory->id }}][quantity]" class="form-control"
+                                    min="1" value="1">
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

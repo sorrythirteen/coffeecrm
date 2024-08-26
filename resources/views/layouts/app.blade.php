@@ -28,9 +28,6 @@
                         <a class="nav-link" href="{{ route('inventories.index') }}">Запасы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('loyalty_programs.index') }}">Баллы</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('table_reservations.index') }}">Бронь столов</a>
                     </li>
                     <li class="nav-item">

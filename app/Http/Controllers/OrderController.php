@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\CoffeeMenu;
 use App\Models\Order;
-use App\Models\OrderItem; // Убедитесь, что этот импорт используется
-use Illuminate\Http\Request;
+use App\Models\Inventory;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -20,7 +21,8 @@ class OrderController extends Controller
     {
         $customers = Customer::all();
         $coffeeMenus = CoffeeMenu::all();
-        return view('orders.create', compact('customers', 'coffeeMenus'));
+        $inventories = Inventory::all();
+        return view('orders.create', compact('customers', 'coffeeMenus', 'inventories'));
     }
 
     public function store(Request $request)
@@ -32,6 +34,9 @@ class OrderController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
             'payment_method' => 'required|in:cash,sbp,card',
             'order_time' => 'required|date',
+            'inventories' => 'required|array',
+            'inventories.*.id' => 'required|exists:inventories,id',
+            'inventories.*.quantity' => 'required|integer|min:1',
         ]);
 
         DB::beginTransaction();
@@ -53,6 +58,12 @@ class OrderController extends Controller
                     'quantity' => $item['quantity'],
                     'price' => $coffeeMenu->price,
                 ]);
+            }
+
+            foreach ($validatedData['inventories'] as $inventoryData) {
+                $inventory = Inventory::find($inventoryData['id']);
+                $inventory->quantity -= $inventoryData['quantity'];
+                $inventory->save();
             }
 
             DB::commit();

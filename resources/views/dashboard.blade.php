@@ -23,14 +23,6 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Всего баллов</h5>
-                    <p class="card-text">{{ $totalLoyaltyPoints }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
                     <h5 class="card-title">Всего сотрудников</h5>
                     <p class="card-text">{{ $totalEmployees }}</p>
                 </div>
@@ -72,14 +64,11 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <canvas id="customersChart" width="400" height="200"></canvas>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <canvas id="inventoriesChart" width="400" height="200"></canvas>
-        </div>
-        <div class="col-md-4">
-            <canvas id="loyaltyProgramsChart" width="400" height="200"></canvas>
         </div>
     </div>
 </div>
@@ -120,29 +109,6 @@
                     data: @json($inventoriesCounts),
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
-                    fill: false
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        var loyaltyProgramsCtx = document.getElementById('loyaltyProgramsChart').getContext('2d');
-        var loyaltyProgramsChart = new Chart(loyaltyProgramsCtx, {
-            type: 'line',
-            data: {
-                labels: @json($loyaltyProgramsDates),
-                datasets: [{
-                    label: 'Количество участников программы лояльности',
-                    data: @json($loyaltyProgramsCounts),
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1,
                     fill: false
                 }]
