@@ -39,7 +39,7 @@ class OrderController extends Controller
                 'order_time' => 'required|date',
                 'inventories' => 'required|array',
                 'inventories.*.id' => 'required|exists:inventories,id',
-                'inventories.*.quantity' => 'required|integer|min:1',
+                'inventories.*.quantity' => 'integer|min:0', // Разрешаем нулевое значение
             ]);
 
             // Начало транзакции
@@ -77,7 +77,14 @@ class OrderController extends Controller
                 if (!$inventory) {
                     throw new \Exception("Inventory item not found: {$inventoryData['id']}");
                 }
-                $inventory->quantity -= $inventoryData['quantity'];
+                $requestedQuantity = $inventoryData['quantity'];
+                $availableQuantity = $inventory->quantity;
+
+                if ($requestedQuantity > $availableQuantity) {
+                    $requestedQuantity = $availableQuantity;
+                }
+
+                $inventory->quantity -= $requestedQuantity;
                 $inventory->save();
             }
 

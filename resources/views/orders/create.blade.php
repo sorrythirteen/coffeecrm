@@ -9,7 +9,7 @@
             <label for="customer_id">Имя</label>
             <select name="customer_id" class="form-control" required>
                 @foreach($customers as $customer)
-                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -24,16 +24,18 @@
                 </thead>
                 <tbody>
                     @foreach($coffeeMenus as $coffeeMenu)
-                    <tr>
-                        <td>
-                            <input type="checkbox" class="item-checkbox" data-id="{{ $coffeeMenu->id }}">
-                            {{ $coffeeMenu->name }}
-                        </td>
-                        <td>
-                            <input type="number" name="items[{{ $coffeeMenu->id }}][quantity]" class="form-control item-quantity" min="0" value="0" disabled>
-                            <input type="hidden" name="items[{{ $coffeeMenu->id }}][coffee_menu_id]" value="{{ $coffeeMenu->id }}">
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="item-checkbox" data-id="{{ $coffeeMenu->id }}">
+                                {{ $coffeeMenu->name }}
+                            </td>
+                            <td>
+                                <input type="number" name="items[{{ $coffeeMenu->id }}][quantity]"
+                                    class="form-control item-quantity" min="0" value="0" disabled>
+                                <input type="hidden" name="items[{{ $coffeeMenu->id }}][coffee_menu_id]"
+                                    value="{{ $coffeeMenu->id }}">
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -49,15 +51,17 @@
                 </thead>
                 <tbody>
                     @foreach($inventories as $inventory)
-                    <tr>
-                        <td>
-                            <input type="hidden" name="inventories[{{ $inventory->id }}][id]" value="{{ $inventory->id }}">
-                            {{ $inventory->product_name }}
-                        </td>
-                        <td>
-                            <input type="number" name="inventories[{{ $inventory->id }}][quantity]" class="form-control" min="1" value="1">
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="inventories[{{ $inventory->id }}][id]"
+                                    value="{{ $inventory->id }}">
+                                {{ $inventory->product_name }}
+                            </td>
+                            <td>
+                                <input type="number" name="inventories[{{ $inventory->id }}][quantity]" class="form-control"
+                                    min="0" value="0" max="{{ $inventory->quantity }}">
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -79,10 +83,10 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const checkboxes = document.querySelectorAll('.item-checkbox');
         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
+            checkbox.addEventListener('change', function () {
                 const quantityInput = document.querySelector(`.item-quantity[name="items[${this.dataset.id}][quantity]"]`);
                 if (this.checked) {
                     quantityInput.disabled = false;
@@ -92,6 +96,29 @@
                     quantityInput.value = 0; // Устанавливаем значение 0, если чекбокс не отмечен
                 }
             });
+        });
+
+        const form = document.getElementById('orderForm');
+        form.addEventListener('submit', function (event) {
+            const inventories = document.querySelectorAll('[name^="inventories"]');
+            let isValid = true;
+
+            inventories.forEach(inventory => {
+                const id = inventory.name.match(/\[(\d+)\]/)[1];
+                const quantityInput = document.querySelector(`[name="inventories[${id}][quantity]"]`);
+                const availableQuantity = parseInt(quantityInput.max);
+                const requestedQuantity = parseInt(quantityInput.value);
+
+                if (requestedQuantity > availableQuantity) {
+                    quantityInput.value = availableQuantity;
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+                alert('Количество запасов было скорректировано до доступного значения.');
+            }
         });
     });
 </script>
