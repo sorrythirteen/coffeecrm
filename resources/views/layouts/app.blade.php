@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    <title>@yield('CoffeeCRM')</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -69,15 +69,6 @@
                 font-size: 18px;
             }
         }
-
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #f8f9fa;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
     </style>
 </head>
 
@@ -94,6 +85,7 @@
             <a href="{{ route('work_times.index') }}"><i class="fas fa-clock"></i> Рабочее время</a>
             <a href="{{ route('coffee_menus.index') }}"><i class="fas fa-coffee"></i> Меню</a>
             <a href="{{ route('orders.index') }}"><i class="fas fa-shopping-cart"></i> Заказы</a>
+            <a href="https://github.com/sorrythirteen/coffeecrm" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                     class="fas fa-sign-out-alt"></i> Выход</a>
@@ -111,9 +103,6 @@
         @endauth
         <div class="container mt-4">
             @yield('content')
-        </div>
-        <div class="footer">
-            <a href="https://github.com/sorrythirteen/coffeecrm" target="_blank">GitHub: sorrythirteen</a>
         </div>
     </div>
 
