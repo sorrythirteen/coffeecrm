@@ -20,7 +20,7 @@
             <input type="text" name="phone" class="form-control" value="{{ $customer->phone }}">
         </div>
         <div class="form-group">
-            <label for="address">придумать назначение, либо удалить</label>
+            <label for="address">Адрес</label>
             <textarea name="address" class="form-control">{{ $customer->address }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Обновить</button>
